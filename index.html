@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Samuel Iradukunda - Frontend Developer</title>
+<meta name="description" content="Portfolio of Samuel Iradukunda, Frontend Developer based in Kigali, Rwanda.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Colors taken from the weather reference: night navy, slate teal, sunset orange */
+:root{
+  --bg:#0a1218;        /* page background */
+  --panel:#10242f;     /* cards and bars */
+  --line:#1f3846;      /* thin borders */
+  --orange:#e0761a;    /* main accent (the search button orange) */
+  --amber:#f0a04b;     /* soft glow */
+  --text:#f3ece2;
+  --muted:#9fb0b8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',system-ui,sans-serif;font-weight:300;line-height:1.65}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* NAVBAR: stays at the top while scrolling */
+header{position:sticky;top:0;z-index:10;background:rgba(10,18,24,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:600;font-size:1.3rem;letter-spacing:.5px}
+.logo span{color:var(--orange)}
+.links{display:flex;gap:28px}
+.links a{color:var(--muted);transition:color .2s}
+.links a:hover{color:var(--text)}
+.right{display:flex;align-items:center;gap:14px}
+.icon{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--muted);transition:.2s}
+.icon:hover{color:var(--bg);background:var(--amber);border-color:var(--amber)}
+.icon svg{width:18px;height:18px;fill:currentColor}
+.icon svg.stroke{fill:none;stroke:currentColor;stroke-width:2}
+.btn{display:inline-block;background:var(--orange);color:#fff;font-weight:500;padding:10px 22px;border-radius:4px;transition:background .2s}
+.btn:hover{background:var(--amber);color:var(--bg)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+.btn.ghost:hover{border-color:var(--amber);background:transparent;color:var(--amber)}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;padding:90px 0 80px;
+  background:radial-gradient(ellipse 60% 70% at 80% 30%,rgba(224,118,26,.30),transparent 70%),linear-gradient(180deg,#0e1f29,var(--bg))}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:300;line-height:1.05}
+.hero h2{font-size:1.5rem;font-weight:400;color:var(--amber);margin:12px 0 22px}
+.hero p{color:var(--muted);max-width:52ch;font-size:1.08rem}
+.hero .actions{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.photo{justify-self:center;width:min(100%,340px);aspect-ratio:1;border-radius:50%;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+
+/* SECTIONS */
+section{padding:80px 0}
+.title{font-size:2rem;font-weight:400;margin-bottom:34px}
+.title::after{content:"";display:block;width:48px;height:3px;background:var(--orange);margin-top:10px}
+
+/* TECH */
+.tech{display:flex;flex-wrap:wrap;gap:14px}
+.tech span{display:inline-flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);padding:12px 24px;border-radius:999px;font-weight:400}
+.tech i{font-size:1.5rem;line-height:1}
+
+/* PROJECTS */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--orange);transform:translateY(-4px)}
+.card img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;border-bottom:1px solid var(--line)}
+.card .body{padding:22px;display:flex;flex-direction:column;gap:12px;flex:1}
+.card h3{font-size:1.35rem;font-weight:500}
+.card p{color:var(--muted);flex:1}
+.stack{display:flex;flex-wrap:wrap;gap:8px}
+.stack span{font-size:.82rem;color:var(--amber);border:1px solid var(--line);border-radius:4px;padding:2px 10px}
+.card .btns{display:flex;gap:10px;margin-top:6px}
+.card .btn{padding:8px 20px}
+
+/* CONTACT */
+.contact{background:var(--panel);border-top:1px solid var(--line)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact p{color:var(--muted);margin-bottom:22px;max-width:46ch}
+.socials{display:flex;gap:12px;flex-wrap:wrap}
+.phone{display:block;margin-top:18px;color:var(--muted)}
+.phone a{color:var(--amber)}
+footer{text-align:center;color:var(--muted);padding:24px;font-size:.9rem;border-top:1px solid var(--line)}
+
+/* PHONES */
+@media(max-width:800px){
+  .links{display:none}
+  .hero .wrap,.contact .wrap,.grid{grid-template-columns:1fr}
+  .photo{order:-1;width:220px}
+  .hero{padding-top:50px}
+}
+@media(max-width:480px){.right .icon{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="logo" href="#home">S<span>.</span>I</a>
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="#tech">Tech</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="right">
+      <a class="icon" href="https://github.com/iradukundasamuel183-max" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      <a class="icon" href="https://www.linkedin.com/in/iradukunda-samuel-2b0222413" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.5h-3.6v-5.6c0-1.300 0-3-1.800-3s-2.100 1.400-2.100 2.900v5.700H9.300V9h3.400v1.600c.5-.9 1.600-1.800 3.400-1.800 3.600 0 4.300 2.400 4.300 5.500v6.200zM5.300 7.400a2.100 2.100 0 1 1 0-4.200 2.100 2.100 0 0 1 0 4.200zM7.100 20.500H3.600V9h3.500v11.500zM22.200 0H1.800C.8 0 0 .8 0 1.700v20.600c0 .9.800 1.700 1.800 1.700h20.400c1 0 1.800-.8 1.800-1.700V1.700C24 .8 23.200 0 22.200 0z"/></svg></a>
+      <a class="icon" href="https://www.instagram.com/iraduk.sam/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" class="stroke"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a class="btn" href="Samuel_Iradukunda_CV.pdf" target="_blank" rel="noopener">CV</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- HOME -->
+<div class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <h1>Samuel Iradukunda</h1>
+      <h2>Frontend Developer</h2>
+      <p>I'm a Software Engineering student at AUCA in Kigali, Rwanda, building responsive and easy-to-use websites and web apps with HTML, CSS and JavaScript. I like turning real needs, from school and church attendance to company websites, into simple tools people can use every day, and I keep learning something new about the web daily.</p>
+      <div class="actions">
+        <a class="btn" href="#projects">View projects</a>
+        <a class="btn ghost" href="#contact">Contact me</a>
+      </div>
+    </div>
+    <div class="photo"><img src="images/me.jpg" alt="Samuel Iradukunda"></div>
+  </div>
+</div>
+
+<!-- TECH -->
+<section id="tech">
+  <div class="wrap">
+    <h2 class="title">Technologies</h2>
+    <div class="tech">
+      <span><i class="devicon-html5-plain colored"></i>HTML</span>
+      <span><i class="devicon-css3-plain colored"></i>CSS</span>
+      <span><i class="devicon-javascript-plain colored"></i>JavaScript</span>
+      <span><i class="devicon-supabase-plain colored"></i>Supabase</span>
+      <span><i class="devicon-github-original"></i>GitHub</span>
+      <span><i class="devicon-vercel-original"></i>Vercel</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <h2 class="title">Projects</h2>
+    <div class="grid">
+
+      <article class="card">
+        <img src="images/church.jpg" alt="Samuduha SDA Attendance dashboard">
+        <div class="body">
+          <h3>Samuduha SDA Attendance</h3>
+          <p>A Sabbath school attendance system with a Kinyarwanda interface. Leaders sign in to record weekly attendance, and the admin sees school-wide performance and monthly history.</p>
+          <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Supabase</span><span>Vercel</span></div>
+          <div class="btns">
+            <a class="btn" href="https://samuduha-sda-attendance.vercel.app/" target="_blank" rel="noopener">Demo</a>
+            <a class="btn ghost" href="https://github.com/iradukundasamuel183-max" target="_blank" rel="noopener">Git</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="images/tesrapl.jpg" alt="TESRAPL Ltd website">
+        <div class="body">
+          <h3>TESRAPL Ltd</h3>
+          <p>A company website for a CCTV and security installation firm. It presents services, products and clients, with call and WhatsApp buttons so customers can reach the company in one tap.</p>
+          <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Vercel</span></div>
+          <div class="btns">
+            <a class="btn" href="https://tesraplltd.vercel.app/#home" target="_blank" rel="noopener">Demo</a>
+            <a class="btn ghost" href="https://github.com/iradukundasamuel183-max" target="_blank" rel="noopener">Git</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="images/pagetide.jpg" alt="Pagetide book library">
+        <div class="body">
+          <h3>Pagetide</h3>
+          <p>An online book library where anyone can search free classics by title, author or category and read them in the browser, or publish their own book. Available in English and French.</p>
+          <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Supabase</span><span>Vercel</span></div>
+          <div class="btns">
+            <a class="btn" href="https://pagetide.vercel.app/#top" target="_blank" rel="noopener">Demo</a>
+            <a class="btn ghost" href="https://github.com/iradukundasamuel183-max" target="_blank" rel="noopener">Git</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="images/isd.jpg" alt="isd video sharing app">
+        <div class="body">
+          <h3>isd</h3>
+          <p>A YouTube-style video sharing app with accounts, real video uploads, view counts, comments, profile pictures and live streaming, organised by categories like Entertainment, Sport, Education and Business.</p>
+          <div class="stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Supabase</span><span>Vercel</span></div>
+          <div class="btns">
+            <a class="btn" href="https://isd-web.vercel.app/#home" target="_blank" rel="noopener">Demo</a>
+            <a class="btn ghost" href="https://github.com/iradukundasamuel183-max" target="_blank" rel="noopener">Git</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <h2 class="title">Contact me</h2>
+      <p>Have a project, a job or an idea to talk about? Send me an email and I'll get back to you.</p>
+      <a class="btn" href="mailto:iradukundasamuel183@gmail.com">Email me</a>
+      <span class="phone">Phone: <a href="tel:+250794402997">+250 794 402 997</a></span>
+    </div>
+    <div>
+      <h2 class="title">Find me elsewhere</h2>
+      <p>Kigali, Rwanda. I speak Kinyarwanda, English and some French.</p>
+      <div class="socials">
+        <a class="btn ghost" href="https://www.linkedin.com/in/iradukunda-samuel-2b0222413" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="https://github.com/iradukundasamuel183-max" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://www.instagram.com/iraduk.sam/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>&copy; 2026 Samuel Iradukunda</footer>
+</body>
+</html>
